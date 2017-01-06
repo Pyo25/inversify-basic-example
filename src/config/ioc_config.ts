@@ -10,8 +10,21 @@ import Samurai from "../entities/warriors/samurai";
 import Shuriken from "../entities/weapons/shuriken";
 import Katana from "../entities/weapons/katana";
 import EpicBattle from "../entities/battle/epic_battle";
+import { Config, ConfigProvider, IConfig } from "../async_config";
 
 let container = new Container();
+
+container.bind<IConfig>(SERVICE_IDENTIFIER.CONFIG).to(Config).inSingletonScope();
+
+container.bind<ConfigProvider>(SERVICE_IDENTIFIER.CONFIG_PROVIDER).toProvider<IConfig>((context) => {
+  return () => {
+    return new Promise<IConfig>((resolve) => {
+      console.log("call config provider");
+      let cfg = context.container.get<IConfig>(SERVICE_IDENTIFIER.CONFIG);
+      cfg.initialize().then(resolve);
+    });
+  };
+});
 
 container.bind<Warrior>(SERVICE_IDENTIFIER.WARRIOR).to(Ninja).whenTargetNamed(TAG.CHINESE);
 container.bind<Warrior>(SERVICE_IDENTIFIER.WARRIOR).to(Samurai).whenTargetNamed(TAG.JAPANESE);

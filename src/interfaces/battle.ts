@@ -1,5 +1,5 @@
 interface Battle {
-    fight(): string;
+    fight(): Promise<any>;
 }
 
 export default Battle;
