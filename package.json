@@ -4,7 +4,8 @@
   "description": "A basic example that showcases how to setup InversifyJS",
   "main": "index.js",
   "scripts": {
-    "test": "gulp"
+    "test": "gulp",
+    "start": "gulp && node dist/main.js"
   },
   "repository": {
     "type": "git",
