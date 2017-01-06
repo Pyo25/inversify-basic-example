@@ -15,7 +15,7 @@ class EpicBattle implements Battle {
 
     public async fight() {
         await this.init();
-        let desc = `FIGHT with token #{this.config.token}!
+        let desc = `FIGHT with token ${this.config.token}!
                 ${this.warrior1.name} (${this.warrior1.weapon.name})
                 vs
                 ${this.warrior2.name} (${this.warrior2.weapon.name})`;

@@ -5,4 +5,4 @@ import Battle from "./interfaces/battle";
 // Composition root
 let epicBattle = container.get<Battle>(SERVICE_IDENTIFIER.BATTLE);
 
-console.log(epicBattle.fight());
+epicBattle.fight().then(console.log);
